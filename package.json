@@ -1,0 +1,19 @@
+{
+  "name": "elaboration-rezoo",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"rescript build -w",
+    "build":"rescript build",
+    "clean":"rescript clean"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "rescript": "^10.1.4"
+  }
+}
