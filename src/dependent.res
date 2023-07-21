@@ -66,11 +66,11 @@ let ex2 =
 ,   Let("five", Var("Nat"), Lam("N", Lam("s", Lam("z", App(Var("s"), App(Var("s"), App(Var("s"), App(Var("s"), App(Var("s"), Var("z")))))))))
 ,   Let("add", arr(Var("Nat"), arr(Var("Nat"), Var("Nat"))), Lam("a", Lam("b", Lam("N", Lam("s", Lam("z", App(App(App(Var("a"), Var("N")), Var("s")), App(App(App(Var("b"), Var("N")), Var("s")), Var("z"))))))))
 ,   Let("mul", arr(Var("Nat"), arr(Var("Nat"), Var("Nat"))), Lam("a", Lam("b", Lam("N", Lam("s", Lam("z", App(App(App(Var("a"), Var("N")), App(App(Var("b"), Var("N")), Var("s"))), Var("z")))))))
-// ,   Let("ten", Var("Nat"), App(App(Var("add"), Var("five")), Var("five")) 
-// ,   Let("hundred", Var("Nat"), App(App(Var("mul"), Var("ten")), Var("ten"))
-// ,   Let("thousand", Var("Nat"), App(App(Var("mul"), Var("ten")), Var("hundred"))
-,   Var("five")
-)))))//)//))
+,   Let("ten", Var("Nat"), App(App(Var("add"), Var("five")), Var("five")) 
+,   Let("hundred", Var("Nat"), App(App(Var("mul"), Var("ten")), Var("ten"))
+,   Let("thousand", Var("Nat"), App(App(Var("mul"), Var("ten")), Var("hundred"))
+,   Var("thousand")
+))))))))
 
 }
 
