@@ -76,4 +76,49 @@ let ex2 =
 
 module DeBruijn = {
 
+type name = string
+@unboxed type ix = Ix(int)   // De Bruijn index
+@unboxed type lvl = Lvl(int) // De Bruijn level
+
+type 
+rec ty = tm
+and tm = 
+    | Var(ix)
+    | Lam(name, tm)
+    | App(tm, tm)
+    | U 
+    | Pi(name, ty, ty)
+    | Let(name, ty, tm, tm)
+
+let rec pp = (tm:tm)=>switch tm {
+    | U => "U"
+    | Var(Ix(x)) => x->Belt.Int.toString
+    | Lam(x, t) => "λ "++x++" . "++t->pp
+    | App(t, u) => {
+        switch t {
+        | Var(_) | App(_, _) => t->pp
+        | _ => "("++t->pp++")"
+        }
+        ++" "++
+        switch u {
+        | Var(_) => u->pp
+        | _ => "("++u->pp++")"
+        }
+    }
+    | Pi(x, a, b) => {
+        let ppa = switch a {
+        | Pi(_, _, _) => "("++a->pp++")"
+        | _ => a->pp
+        }
+        let ppb = switch b {
+        | Var(_) | Pi(_, _, _) => b->pp
+        | _ => "("++b->pp++")"
+        }
+        if(x=="_"){ ppa++" -> "++ppb }
+        else{ "( "++x++" : "++ppa++" ) -> "++ppb }
+    }
+    | Let(x, a, t, u) => "let "++x++" : "++a->pp++" = "++t->pp++";\n"++u->pp
 }
+
+}
+
